@@ -1790,6 +1790,45 @@
       });
     });
 
+
+    const WANTED = new Set([
+  "Batter",
+  "BatterTeam",
+  "Pitcher",
+  "PitcherTeam",
+  "PlayResult",
+  "Distance",
+  "ExitSpeed",
+  "RelSpeed",
+  "Angle",
+  "Umpire",
+  "AutoPitchType",
+  "PlateLocHeight",
+  "PlateLocSide",
+  "PitchCall",
+  "HomeTeam",
+  "AwayTeam",
+  "HomeNameFull",
+  "AwayNameFull",
+  "Date",
+  "PitchUID",
+  "PlayID",
+  "GameUID",
+  "Balls",
+  "Strikes",
+  "TaggedHitType",
+  "RunsScored",
+  "SpinRate",
+  "InducedVertBreak",
+  "BasePositionZ",
+  "Catcher",
+  "CatcherId",
+  "CatcherTeam",
+  "PopTime",
+  "ExchangeTime",
+  "ThrowSpeed"
+]);
+
     /**************************************************
       SET UP PapaParse & INITIALIZE EVERYTHING
     **************************************************/
@@ -1799,7 +1838,8 @@
     Papa.parse(file, {
       download: true,
       header: true,
-      skipEmptyLines: true,
+                    transformHeader:h=>WANTED.has(h)?h:false, // false = drop column
+
       complete: results => {
         data = data.concat(results.data);
         fullData = fullData.concat(results.data);

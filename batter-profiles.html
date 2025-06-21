@@ -567,7 +567,7 @@
     let filesLoadedCount = 0;
               csvFiles.forEach(file => {
 
-  Papa.parse('./data.csv', {
+  Papa.parse(file, {
     download: true,
     header: true,
     skipEmptyLines: true,
